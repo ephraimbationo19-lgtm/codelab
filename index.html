@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CodeLab — apprends le HTML, le CSS et le JavaScript gratuitement avec des leçons interactives et des quiz.">
+  <meta name="theme-color" content="#0b1020">
+  <title>CodeLab — Apprends à coder gratuitement</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <button class="brand" data-nav="home" aria-label="CodeLab">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span class="brand-text">
+          <strong data-i18n="brand.name">CodeLab</strong>
+          <small data-i18n="brand.tagline">Apprends à coder, gratuitement.</small>
+        </span>
+      </button>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <button class="nav-link" data-nav="home" data-i18n="nav.home">Accueil</button>
+        <button class="nav-link" data-nav="lessons" data-i18n="nav.lessons">Leçons</button>
+        <button class="nav-link" data-nav="playground" data-i18n="nav.playground">Terrain de jeu</button>
+        <button class="nav-link" data-nav="quiz" data-i18n="nav.quiz">Quiz</button>
+        <button class="nav-link" data-nav="progress" data-i18n="nav.progress">Progression</button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switch" role="group" aria-label="Langue / Language">
+          <button data-lang="fr" class="lang-btn">FR</button>
+          <button data-lang="en" class="lang-btn">EN</button>
+        </div>
+        <button id="theme-toggle" class="icon-btn" data-i18n-title="theme.label" title="Thème" aria-label="Changer de thème">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- ===================== ACCUEIL ===================== -->
+    <section class="view" id="view-home">
+      <div class="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <span class="badge" data-i18n="home.badge">100% gratuit · Open source · Dans ton navigateur</span>
+          <h1 data-i18n data-i18n-html="home.title">Apprends à coder en <span class="accent">pratiquant</span>.</h1>
+          <p class="hero-subtitle" data-i18n="home.subtitle">Des leçons courtes, un éditeur de code en direct et des quiz.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" data-nav="lessons" data-i18n="home.cta">Commencer à apprendre</button>
+            <button class="btn btn-ghost" data-nav="playground" data-i18n="home.cta2">Ouvrir le terrain de jeu</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong data-bind="lessonsCount">12</strong>
+              <span data-i18n="home.stat.lessons">leçons interactives</span>
+            </div>
+            <div class="stat">
+              <strong data-bind="quizCount">10</strong>
+              <span data-i18n="home.stat.quiz">questions de quiz</span>
+            </div>
+            <div class="stat">
+              <strong>0 €</strong>
+              <span data-i18n="home.stat.cost">coût total</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-i18n="home.section.features">Pourquoi CodeLab ?</h2>
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3 data-i18n="home.feature.1.t">Apprends en faisant</h3>
+            <p data-i18n="home.feature.1.d">Chaque leçon est un défi.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3 data-i18n="home.feature.2.t">Bilingue FR / EN</h3>
+            <p data-i18n="home.feature.2.d">Bascule entre les langues.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3 data-i18n="home.feature.3.t">Ta progression, à toi</h3>
+            <p data-i18n="home.feature.3.d">Sauvegardée localement.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🎁</div>
+            <h3 data-i18n="home.feature.4.t">Gratuit pour toujours</h3>
+            <p data-i18n="home.feature.4.d">Aucun abonnement.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <h2 class="section-title" data-i18n="home.section.tracks">Choisis ton parcours</h2>
+        <div class="tracks-grid" id="tracks-grid">
+          <!-- Rempli par JS -->
+        </div>
+      </div>
+
+      <div class="cta-band">
+        <h2 data-i18n="home.cta.bottom">Prêt à écrire ta première ligne de code ?</h2>
+        <button class="btn btn-primary" data-nav="lessons" data-i18n="home.cta">Commencer à apprendre</button>
+      </div>
+    </section>
+
+    <!-- ===================== LEÇONS ===================== -->
+    <section class="view" id="view-lessons" hidden>
+      <div class="page-head">
+        <h1 data-i18n="lessons.title">Leçons interactives</h1>
+        <p data-i18n="lessons.subtitle">Un pas à la fois.</p>
+      </div>
+      <div class="lessons-layout">
+        <aside class="lessons-sidebar" id="lessons-sidebar">
+          <div class="sidebar-filters" id="track-filters"></div>
+          <div class="lesson-list" id="lesson-list"></div>
+          <div class="sidebar-progress">
+            <div class="progress-label">
+              <span data-i18n="lessons.progress">Progression du parcours</span>
+              <strong id="track-progress-text">0%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="track-progress-fill"></div></div>
+          </div>
+        </aside>
+        <div class="lesson-main" id="lesson-main">
+          <!-- Rempli par JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TERRAIN DE JEU ===================== -->
+    <section class="view" id="view-playground" hidden>
+      <div class="page-head">
+        <h1 data-i18n="play.title">Terrain de jeu</h1>
+        <p data-i18n="play.subtitle">Un espace libre.</p>
+      </div>
+      <div class="workspace">
+        <div class="workspace-editors" id="playground-editor"></div>
+        <div class="workspace-output">
+          <div class="output-toolbar">
+            <span class="output-title" data-i18n="play.preview">Résultat</span>
+            <button class="btn btn-small btn-primary" id="play-run" data-i18n="play.run">Exécuter le code</button>
+            <button class="btn btn-small btn-ghost" id="play-reset" data-i18n="play.reset">Tout effacer</button>
+          </div>
+          <div class="preview-frame" id="playground-preview"></div>
+          <div class="console-panel">
+            <div class="console-head" data-i18n="play.console">Console</div>
+            <div class="console-output" id="playground-console"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== QUIZ ===================== -->
+    <section class="view" id="view-quiz" hidden>
+      <div class="page-head">
+        <h1 data-i18n="quiz.title">Quiz</h1>
+        <p data-i18n="quiz.subtitle">Teste tes connaissances.</p>
+      </div>
+      <div id="quiz-container" class="quiz-container"></div>
+    </section>
+
+    <!-- ===================== PROGRESSION ===================== -->
+    <section class="view" id="view-progress" hidden>
+      <div class="page-head">
+        <h1 data-i18n="progress.title">Ma progression</h1>
+        <p data-i18n="progress.subtitle">Ton aventure en chiffres.</p>
+      </div>
+      <div id="progress-container" class="progress-container"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span data-i18n="footer.made">Fait avec ❤️ pour les curieux.</span>
+      <span class="footer-note">CodeLab · <span data-i18n="brand.tagline">Apprends à coder, gratuitement.</span></span>
+    </div>
+  </footer>
+
+  <div id="runner-host" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/quizzes.js"></script>
+  <script src="js/advanced.js"></script>
+  <script src="js/advanced-quizzes.js"></script>
+  <script src="js/runner.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
