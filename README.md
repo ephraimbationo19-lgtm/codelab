@@ -1,5 +1,7 @@
 # CodeLab — Apprends à coder gratuitement
 
+**🌐 Site en ligne : https://ephraimbationo19-lgtm.github.io/codelab/**
+
 Une application web **interactive et bilingue (FR / EN)** pour apprendre le HTML, le CSS et le JavaScript. Aucune dépendance, aucun build, aucun compte : tu écris du code, tu vois le résultat en direct, tu vérifies tes réponses et ta progression est sauvegardée localement.
 
 ## Fonctionnalités
